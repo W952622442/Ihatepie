@@ -65,11 +65,11 @@ class br(gdb.Command):
     
         self.__getaddr(argv[0])
         try:
-
+            addrr=gdb.execute(argv[1], to_string=True)
             if(argv[0]=='l'):
-                s='b *'+str(hex(int(argv[1],16)+self.__libc_base_addr))
+                s='b *'+str(hex(int(addrr,16)+self.__libc_base_addr))
             else:
-                s='b *'+str(hex(int(argv[0],16)+self.__base_addr))
+                s='b *'+str(hex(int(addrr,16)+self.__base_addr))
 
         except:
             raise gdb.GdbError('error to find addr')
